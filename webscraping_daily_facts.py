@@ -1,4 +1,5 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 
 
@@ -15,7 +16,7 @@ for i in range(1,2):
     soup = BeautifulSoup(page.content, 'html.parser')
 
     content = soup.find('main').find_all('p')
-    date = get_formatted_text(soup.find('main').find('h1')).split('–')[1][1:]
+    date = get_formatted_text(soup.find('main').find('h1'))[12:]
 
     data = {
         "date": date,
@@ -27,4 +28,4 @@ for i in range(1,2):
 
     data_result.append(data)
 
-print(data_result)
+print("data: " + json.dumps(data_result))

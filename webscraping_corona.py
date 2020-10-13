@@ -1,4 +1,5 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 
 user_agent = {'User-agent': 'Mozilla/5.0'}
@@ -22,7 +23,6 @@ print(soup.find('h3'))
 # You can find specific sections by finding the html tags using the html class
 print(soup.find_all('div', class_='maincounter-number'))
 
-
 main_counters = soup.find_all('div', class_='maincounter-number')
 for counter in main_counters:
     print(counter.get_text().replace('\n', ''))
@@ -34,13 +34,14 @@ cases = get_formatted_text(main_counters[0])
 deaths = get_formatted_text(main_counters[1])
 recovered = get_formatted_text(main_counters[2])
 
-print(f"Corona cases: {cases}")
-print(f"Deaths: {deaths}")
-print(f"Recovered: {recovered}")
+print("Corona cases: " + cases)
+print("Deaths: " + deaths)
+print("Recovered: " + recovered)
 
 data = {
     'cases': cases,
     'deaths': deaths,
     'recovered': recovered
 }
-print(f"data: {data}")
+
+print("data: " + json.dumps(data))
