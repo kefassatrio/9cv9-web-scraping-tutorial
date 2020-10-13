@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-page = requests.get("https://www.worldometers.info/coronavirus/country/indonesia/")
+user_agent = {'User-agent': 'Mozilla/5.0'}
+page = requests.get("https://www.worldometers.info/coronavirus/country/indonesia/", headers = user_agent)
 
 soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -32,6 +33,14 @@ def get_formatted_text(element):
 cases = get_formatted_text(main_counters[0])
 deaths = get_formatted_text(main_counters[1])
 recovered = get_formatted_text(main_counters[2])
+
 print(f"Corona cases: {cases}")
 print(f"Deaths: {deaths}")
 print(f"Recovered: {recovered}")
+
+data = {
+    'cases': cases,
+    'deaths': deaths,
+    'recovered': recovered
+}
+print(f"data: {data}")
