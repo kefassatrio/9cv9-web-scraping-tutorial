@@ -10,7 +10,7 @@ web_url = "https://www.beagreatteacher.com/daily-fun-fact/page/"
 user_agent = {'User-agent': 'Mozilla/5.0'}
 data_result = []
 
-for i in range(1,2):
+for i in range(1,6):
     page_url = web_url + str(i)
     page = requests.get(page_url, headers = user_agent)
     soup = BeautifulSoup(page.content, 'html.parser')
