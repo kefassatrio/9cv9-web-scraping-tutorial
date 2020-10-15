@@ -7,18 +7,21 @@ page = requests.get("https://www.worldometers.info/coronavirus/country/indonesia
 
 soup = BeautifulSoup(page.content, 'html.parser')
 
-# To get display the html
+# To see the html
 print(soup.prettify())
 
 # To get a list of all h3 tags in the html
 print(soup.find_all('h3'))
 
-# To get the text of the first h3 tag in the html
-print(soup.find_all('h3')[0].get_text())
+# To get the first h3 tag in the html
+print(soup.find_all('h3')[0])
 
 # you can also do this to get the same result 
 # (find function automatically returns the first one that is found)
 print(soup.find('h3'))
+
+# you can get only the text using this function
+print(soup.find('h3').get_text())
 
 # You can find specific sections by finding the html tags using the html class
 print(soup.find_all('div', class_='maincounter-number'))
